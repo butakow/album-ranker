@@ -79,7 +79,7 @@ def rank_albums(client_token):
 def render_table():
     """Render the table"""
     code = request.cookies.get("code")
-    code_verifier = request.get("code_verifier")
+    code_verifier = request.cookies.get("code_verifier")
     client_token = requests.post(
         "https://accounts.spotify.com/api/token",
         headers={"Content-Type": "application/x-www-form-urlencoded"},
