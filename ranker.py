@@ -78,8 +78,8 @@ def rank_albums(client_token):
 @app.route("/data")
 def render_table():
     """Render the table"""
-    code = request.cookies["code"]
-    code_verifier = request.cookies["code_verifier"]
+    code = request.cookies.get("code")
+    code_verifier = request.get("code_verifier")
     client_token = requests.post(
         "https://accounts.spotify.com/api/token",
         headers={"Content-Type": "application/x-www-form-urlencoded"},
@@ -123,7 +123,7 @@ def main():
         }
         query = "&".join(f"{k}={v}" for (k, v) in params.items())
 
-        response = make_response(redirect(f"https://accounts.spotify.com/authorize?{query}"))
+        response = make_response(render_template("auth.html", query=query))
         response.set_cookie("code_verifier", code_verifier.decode("ascii"))
         return response
     if code is not None:

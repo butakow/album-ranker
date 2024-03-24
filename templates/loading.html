@@ -1,10 +1,7 @@
+<!DOCTYPE html>
 <html>
 	<head>
-		<script>
-			fetch("data").then(async (template) => {
-				document.body.innerHTML = await template.text();
-			})
-		</script>
+		<title>Loading...</title>
 	</head>
 	<body>
 		<div style="margin:0px auto">
@@ -13,4 +10,5 @@
 			<p style="text-align:center">This could take a while :)</p>
 		</div>
 	</body>
+	<script>window.location.replace("/data");</script>
 </html>
